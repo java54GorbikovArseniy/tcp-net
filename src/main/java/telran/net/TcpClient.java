@@ -31,6 +31,10 @@ public class TcpClient implements Closeable{
         connect();
     }
 
+    public TcpClient(String hostname, int port) {
+        this(hostname, port, DEFAULT_INTERVAL, DEFAULT_NUMBER_ATTEMPTS);
+    }
+
     private void connect() {
         int counter = nAttempts;
         do {
@@ -51,9 +55,7 @@ public class TcpClient implements Closeable{
         while (Instant.now().isBefore(finished));
     }
 
-    public TcpClient(String hostname, int port) {
-        this(hostname, port, DEFAULT_INTERVAL, DEFAULT_NUMBER_ATTEMPTS);
-    }
+
 
     @Override
     public void close() throws IOException {
